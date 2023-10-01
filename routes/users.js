@@ -9,6 +9,8 @@ router.post('/update/:id', passport.checkAuthentication, usersController.update_
 router.get('/signup', passport.isAuthenticate, usersController.signUp);
 router.get('/signin', passport.isAuthenticate, usersController.signIn);
 
+// routes for forgot password
+
 router.post('/create-user', usersController.create_user);
 
 //use passport as middleware to authenticate
