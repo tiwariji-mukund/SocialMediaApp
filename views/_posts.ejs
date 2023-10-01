@@ -1,0 +1,16 @@
+<li id="post-<%= post._id %>">
+  <div class="post">
+    <p id="posts"><%= post.content %></p>
+    <span
+      ><small id="u_name-<%= post.user.name %>"
+        ><%= post.user.name %></small
+      ></span
+    >
+    <% if(locals.user && locals.user.id == post.user.id) { %>
+    <a class="delete-post-btn" href="/posts/delete/<%= post.id %>"
+      ><small>Delete Post</small></a
+    >
+    <% } %>
+  </div>
+  <%- include('_comments') -%>
+</li>

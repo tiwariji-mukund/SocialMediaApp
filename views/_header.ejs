@@ -1,0 +1,98 @@
+<header>
+  <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand mx-4" href="/">Codeial</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="true" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+        
+        <div class="d-flex d-md-flex justify-content-lg-end">
+          <ul class="d-flex" style="list-style: none;">
+            <% if(locals.user) { %>
+              <li class="nav-item"><a href="/users/profile/<%= user.id %>"><button class="btn btn-outline-light md-my-2 mx-2" type="button">Hello! <%= user.name %></button></a></li>
+              <li class="nav-item"><a href="/users/signout"><button class="btn btn-outline-danger md-my-2 mx-4" type="button">Sign Out</button></a></li>
+            <% } else { %>
+              <!-- Button trigger modal -->
+              <li class="nav-item"><button class="btn btn-outline-success mx-4" data-bs-target="#signin" data-bs-toggle="modal">Sign In</button></li>
+            <% } %>          
+          </ul>
+        </div>        
+      </div>      
+    </div>
+    
+  </nav>  
+
+  
+
+  <!-- Modal -->
+  <!-- Sign In Modal -->
+  <div class="modal fade" id="signin" aria-hidden="true" aria-labelledby="signinModalLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="signinModalLabel">Sign In</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="/users/create-session">
+            <div class="mb-3">
+              <label for="inputEmail" class="form-label">Email address</label>
+              <input type="email" name="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your Email" required>
+            </div>
+            <div class="mb-3">
+              <label for="inputPassword" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Your Password" required>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          New User? Click here<button class="btn btn-link" data-bs-target="#signup" data-bs-toggle="modal">Create Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div class="modal fade" id="signup" aria-hidden="true" aria-labelledby="signupModalLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="signupModalLabel">Create Account</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="row g-3" method="post" action="/users/create-user">
+            <div class="mb-2">
+              <label for="inputName" class="form-label">Name</label>
+              <input type="text" name="name" class="form-control" id="inputName" placeholder="Your Name" required>
+            </div>
+            <div class="mb-2">
+                <label for="inputEmail" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Email" required>
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Enter Password" required>
+            <div>
+            <div class="mt-4 mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+            <div>
+              <div class="d-grid gap-2 col-6 mx-auto my-4">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer mt-4 mb-0">
+          Already have an account? Click here<button class="btn btn-link" data-bs-target="#signin" data-bs-toggle="modal">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
